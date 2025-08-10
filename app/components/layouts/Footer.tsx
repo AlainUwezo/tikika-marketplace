@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
+import { FunctionComponent } from "react";
 
-export default function Footer() {
+interface Props {
+  classNames?: string;
+}
+
+const Footer: FunctionComponent<Props> = ({ classNames = "" }) => {
   return (
     <footer className="border-t border-border bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -77,4 +82,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

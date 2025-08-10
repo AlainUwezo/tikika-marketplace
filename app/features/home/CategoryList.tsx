@@ -2,16 +2,21 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { FunctionComponent } from "react";
 
 const categories = [
-  { name: "Électronique", image: "/images/categories/phone.png" },
-  { name: "Livres", image: "/images/categories/livre.png" },
-  { name: "Jeux", image: "/images/categories/game.webp" },
-  { name: "Mode", image: "/images/categories/mode.png" },
-  { name: "Ordinateurs", image: "/images/categories/computer.png" },
+  { name: "Électronique", image: "/images/promo-banner.png" },
+  { name: "Livres", image: "/images/promo-banner.png" },
+  { name: "Jeux", image: "/images/promo-banner.png" },
+  { name: "Mode", image: "/images/promo-banner.png" },
+  { name: "Ordinateurs", image: "/images/promo-banner.png" },
 ];
 
-export default function CategoryList() {
+interface Props {
+  classNames?: string;
+}
+
+const CategoryList: FunctionComponent<Props> = ({ classNames = "" }) => {
   const router = useRouter();
 
   const categoryHandler = () => {
@@ -21,7 +26,7 @@ export default function CategoryList() {
   return (
     <section>
       <div
-        className="
+        className={` ${classNames}
           flex
           gap-4
           overflow-x-auto
@@ -30,14 +35,14 @@ export default function CategoryList() {
           lg:flex-col
           lg:overflow-visible
           lg:max-h-[calc(100vh-4rem)] 
-        "
+        `}
       >
         {categories.map((category, index) => (
           <div
             key={index}
             onClick={categoryHandler}
             className="
-              min-w-[120px]
+              min-w-[100px]
               sm:min-w-[140px]
               flex-shrink-0
               overflow-hidden
@@ -70,4 +75,6 @@ export default function CategoryList() {
       </div>
     </section>
   );
-}
+};
+
+export default CategoryList;

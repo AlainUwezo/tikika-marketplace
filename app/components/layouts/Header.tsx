@@ -110,11 +110,19 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => router.push("/signin")}
+          >
             <LogIn className="w-4 h-4 mr-2" />
             Connexion
           </Button>
-          <Button variant="default" size="sm">
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => router.push("/signup")}
+          >
             <UserPlus className="w-4 h-4 mr-2" />
             Inscription
           </Button>

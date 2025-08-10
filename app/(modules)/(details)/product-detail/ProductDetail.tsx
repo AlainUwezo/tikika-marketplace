@@ -42,7 +42,7 @@ export default function ProductDetail({
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white rounded-xl lg:grid lg:grid-cols-2 lg:gap-8">
+    <div className="max-w-2xl py-8 mx-auto bg-white rounded-xl lg:grid lg:grid-cols-2 lg:gap-8 px-4">
       {/* Image produit */}
       <div>
         <img

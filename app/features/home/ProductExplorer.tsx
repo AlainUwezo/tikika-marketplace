@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
 import ProductCard from "@/app/components/products/ProductCard";
+import Image from "next/image";
 
 const allProducts = [
   {
@@ -37,50 +38,62 @@ const allProducts = [
 ];
 
 const categories = [
-  "Tous",
-  "Fruits",
-  "Produits laitiers",
-  "Boissons",
-  "Snacks",
-  "Hygiène",
+  { name: "Tous", icon: "/images/categories/all.png" },
+  { name: "Fruits", icon: "/images/categories/fruits.png" },
+  { name: "Produits laitiers", icon: "/images/categories/milk.png" },
+  { name: "Boissons", icon: "/images/categories/drink.png" },
+  { name: "Snacks", icon: "/images/categories/snack.png" },
+  { name: "Hygiène", icon: "/images/categories/hygiene.png" },
 ];
 
 export default function ProductExplorer() {
   const [activeCategory, setActiveCategory] = useState("Tous");
 
-  const filteredProducts = allProducts.filter((product) => {
-    const matchesCategory =
-      activeCategory === "Tous" || product.category === activeCategory;
-    return matchesCategory;
-  });
+  const filteredProducts = allProducts.filter(
+    (product) =>
+      activeCategory === "Tous" || product.category === activeCategory
+  );
 
   return (
     <section className="md:px-8 space-y-8 bg-background">
-      {/* 🏷️ Tabs de catégories */}
-      <div className="w-full overflow-x-auto no-scrollbar">
+      {/* 🏷️ Menu catégories style premium */}
+      <div className="w-full overflow-x-auto no-scrollbar py-2">
         <Tabs
           value={activeCategory}
-          onValueChange={(val) => setActiveCategory(val)}
+          onValueChange={setActiveCategory}
           className="min-w-max"
         >
-          <TabsList className="flex space-x-2 rounded-xl bg-muted p-1 w-max">
+          <TabsList className="flex gap-3 sm:gap-4 px-2 sm:justify-center">
             {categories.map((cat) => (
               <TabsTrigger
-                key={cat}
-                value={cat}
-                className="flex-shrink-0 rounded-lg px-4 py-2 text-sm font-medium transition-all
-                     data-[state=active]:bg-primary data-[state=active]:text-primary-foreground
-                     hover:bg-accent hover:text-accent-foreground"
+                key={cat.name}
+                value={cat.name}
+                className="group flex flex-col items-center justify-center w-24 min-w-[6rem] p-3 rounded-xl
+                   bg-gradient-to-b from-white to-muted/30 shadow-sm hover:shadow-md
+                   border border-transparent hover:border-primary/30
+                   transition-all duration-300 ease-out
+                   data-[state=active]:border-primary data-[state=active]:bg-primary/10
+                   data-[state=active]:shadow-lg"
               >
-                {cat}
+                <div className="relative w-12 h-12 mb-2 transition-transform duration-300 group-hover:scale-105">
+                  <Image
+                    src={cat.icon}
+                    alt={cat.name}
+                    fill
+                    className="object-contain rounded-xl"
+                  />
+                </div>
+                <span className="text-xs font-semibold text-center text-muted-foreground group-hover:text-primary">
+                  {cat.name}
+                </span>
               </TabsTrigger>
             ))}
           </TabsList>
         </Tabs>
       </div>
 
-      {/* 🛍️ Liste des produits */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+      {/* 🛍️ Liste produits */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

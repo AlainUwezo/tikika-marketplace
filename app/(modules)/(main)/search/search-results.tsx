@@ -87,7 +87,7 @@ export default function SubCategoryBrowser({
   }, [search, activeCategory, activeSubCategory]);
 
   return (
-    <section className="max-w-7xl mx-auto space-y-8">
+    <section className="max-w-7xl mx-auto space-y-8 px-4">
       {/* Onglets sous-catégories */}
       <Tabs
         value={activeSubCategory || ""}

@@ -4,10 +4,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
+import { FunctionComponent } from "react";
 
-export default function FaqSection() {
+interface Props {
+  classNames?: string;
+}
+
+const FaqSection: FunctionComponent<Props> = ({ classNames = "" }) => {
   return (
-    <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section
+      className={`${classNames} max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12`}
+    >
       <h2 className="text-xl text-center text-gray-700 mb-8">
         Questions fréquentes
       </h2>
@@ -50,4 +57,6 @@ export default function FaqSection() {
       </Accordion>
     </section>
   );
-}
+};
+
+export default FaqSection;

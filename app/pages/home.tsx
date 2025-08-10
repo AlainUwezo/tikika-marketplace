@@ -1,12 +1,14 @@
 import Footer from "../components/layouts/Footer";
-import ProductExplorer from "../features/home/ProductExplorer";
 import CategoryList from "../features/home/CategoryList";
 import PromoBanner from "../features/home/PromoBanner";
 import FaqSection from "../components/sections/FaqSection";
+import ProductExplorer from "../features/home/ProductExplorer";
+import Header from "../components/layouts/Header";
 
 export default function Home() {
   return (
     <section className="min-h-screen space-y-6">
+      <Header />
       <div
         className="
           flex flex-col
@@ -24,13 +26,14 @@ export default function Home() {
             lg:sticky lg:top-0
             bg-white
             overflow-y-auto
+            lg:px-4
           "
         >
-          <CategoryList />
+          <CategoryList classNames="px-4 lg:px-0" />
         </aside>
 
         {/* Contenu principal promo + produits */}
-        <main className="flex-1">
+        <main className="flex-1 px-4 md:pe-4">
           <PromoBanner
             title="Derniers jours pour économiser !"
             subtitle="Nos meilleures offres s’envolent bientôt."
@@ -45,9 +48,9 @@ export default function Home() {
         </main>
       </div>
 
-      <FaqSection />
+      <FaqSection classNames="px-4" />
 
-      <Footer />
+      <Footer classNames="px-4" />
     </section>
   );
 }

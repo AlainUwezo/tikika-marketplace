@@ -39,7 +39,7 @@ export default function Cart({ initialProducts, onCheckout }: CartProps) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 py-8">
       <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
         Articles dans votre panier
       </h2>
